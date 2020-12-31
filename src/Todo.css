@@ -137,6 +137,10 @@
   padding-top: 20px;
 }
 
+.edit-form {
+  margin-bottom: 5px;
+}
+
 @keyframes strikeitem {
   to {
       width: calc(100% + 1rem);

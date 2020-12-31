@@ -19,6 +19,7 @@ export default class Todo extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSelectPriority = this.handleSelectPriority.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
+    this.toggleShowLabel = this.toggleShowLabel.bind(this);
   }
 
   handleToggle() {
@@ -55,11 +56,15 @@ export default class Todo extends Component {
     this.setState({ isEditing: false })
   }
 
+  toggleShowLabel() {
+    this.setState({ showLabel: !this.state.showLabel });
+  }
+
   render() {
     return (
       <>
         {this.state.isEditing ? (
-          <>
+          <div className="edit-form">
             <div>
               <form className="NewTodoForm">
                 <input
@@ -213,7 +218,7 @@ export default class Todo extends Component {
               <button type="button" disabled={!this.state.todo.task} onClick={this.handleUpdate}>Save</button>
               <button type="button" onClick={this.toggleToEdit}>Cancel</button>
             </div>
-          </>
+          </div>
         ) : (
           <div className="Todo">
             <li className="Todo-item">
