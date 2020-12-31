@@ -23,7 +23,6 @@ export default class NewTodoForm extends Component {
     this.handleSelectPriority = this.handleSelectPriority.bind(this);
   }
   handleChange(evt) {
-    console.log(evt.target.name);
     this.setState({
       todo: { ...this.state.todo, [evt.target.name]: evt.target.value,}
     });
@@ -61,7 +60,6 @@ export default class NewTodoForm extends Component {
   }
 
   handleSelectPriority(evt) {
-    console.log(evt.target.dataset.priority);
     this.setState({
       todo: {
         ...this.state.todo,
@@ -75,7 +73,6 @@ export default class NewTodoForm extends Component {
 
   render() {
     const { show, todo: { task, priority } } = this.state;
-    console.log(this.state.todo);
     return (
       <>
         {show ? (

@@ -18,7 +18,6 @@ export default class TodoList extends Component {
     this.getTodos()
       .then((res) => res.json())
       .then((data) => this.setState({ todos: [...this.state.todos, ...data] }))
-      .then(() => console.log(this.state.todos))
       .catch((err) => this.setState({ errorMsg: err.msg }));
   }
 
@@ -29,12 +28,10 @@ export default class TodoList extends Component {
   toggleCompletion(id) {
     const updatedTodos = this.state.todos.map((todo) => {
       if (todo.todo_id === id) {
-        console.log(todo);
         return { ...todo, completed: !todo.completed };
       }
       return todo;
     });
-    // console.log(updatedTodos);
     this.setState({ todos: updatedTodos });
   }
 
@@ -42,7 +39,6 @@ export default class TodoList extends Component {
     this.setState({
       todos: [...this.state.todos, newTodo],
     });
-    console.log(this.state.todos);
   }
 
   update(id, { task, priority, label }) {
@@ -58,7 +54,6 @@ export default class TodoList extends Component {
       }
       return todo;
     });
-    console.log(updateTodos);
     this.setState({
       todos: updateTodos,
     });

@@ -38,7 +38,6 @@ export default class Todo extends Component {
   }
 
   handleSelectPriority(evt) {
-    console.log(evt.target.dataset.priority);
     this.setState({
       todo: {
         ...this.state.todo,
@@ -50,8 +49,6 @@ export default class Todo extends Component {
 
   handleUpdate(evt) {
     evt.preventDefault();
-    //Take New Task Data and Pass Up To Parent
-    console.log(this.state.todo);
     this.props.update(this.props.id, this.state.todo);
     this.setState({ isEditing: false });
   }
@@ -79,7 +76,6 @@ export default class Todo extends Component {
       showLabel,
     } = this.state;
     let priorityValue = +priorityProps;
-    console.log(priorityProps);
     return (
       <>
         {this.state.isEditing ? (
