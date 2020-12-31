@@ -1,8 +1,13 @@
 
+@font-face {
+  font-family: IndieFlower;
+  src: url(IndieFlower-Regular.ttf);
+}
+
 .Todo{
     display: flex;
     margin-bottom: 5px;
-    padding: 10px 20px;
+    padding: 5px 10px;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
@@ -24,6 +29,8 @@
   border-radius: 10px;
   padding: 2px 8px 4px 8px;
   transition: 0.4s;
+  font-family: 'IndieFlower', sans-serif;
+  font-size: 24px;
 }
 
 .Todo .Todo-item .Todo-item-content .Todo-task:hover {
@@ -135,6 +142,12 @@
   font-size: 12px;
   padding: 0px 8px;
   padding-top: 20px;
+}
+
+.Todo-task_label {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 10px;
 }
 
 .edit-form {

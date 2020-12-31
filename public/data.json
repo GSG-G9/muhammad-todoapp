@@ -11,7 +11,7 @@
     "todo_id": "adcdd873-e875-424c-a5c6-9b30c8f4d31a",
     "todo_content": "new task",
     "completed": false,
-    "priority": 1,
+    "priority": 2,
     "lebel": "House",
     "created_on": 1609398657207,
     "last_update": 1609398689075
@@ -27,7 +27,7 @@
     "todo_id": "ebb017a0-36a8-40af-9bc4-386cb5471383",
     "todo_content": "new task",
     "completed": false,
-    "priority": 1,
+    "priority": 3,
     "lebel": "House",
     "created_on": 1609398657207,
     "last_update": 1609398689075
@@ -35,7 +35,7 @@
     "todo_id": "84fbb190-eb2a-4d45-a678-4005dc45642b",
     "todo_content": "new task",
     "completed": false,
-    "priority": 1,
+    "priority": 2,
     "lebel": "House",
     "created_on": 1609398657207,
     "last_update": 1609398689075

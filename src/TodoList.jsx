@@ -47,13 +47,13 @@ export default class TodoList extends Component {
   }
 
   update(id, {task, priority, label}) {
-    console.log(this.state.todos);
     const updateTodos = this.state.todos.map(todo => {
       if (todo.todo_id === id) {
         return { ...todo, todo_content: task, priority, label, last_update: Date.now() };
       }
       return todo;
     });
+    console.log(updateTodos);
     this.setState({
       todos: updateTodos
     })
@@ -64,7 +64,8 @@ export default class TodoList extends Component {
     const todos = this.state.todos.map(item => (
       <Todo
         key={item.todo_id}
-        task={item.todo_content}
+        taskProps={item.todo_content}
+        priorityProps={item.priority}
         completed={item.completed}
         createdOn={item.created_on}
         lastUpdate={item.last_update}
