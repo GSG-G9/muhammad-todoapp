@@ -1,7 +1,7 @@
 # Todo App
 
 >> Simple web app created by Reactjs
-> Demo link [enter link description here](https://infallible-yalow-eda263.netlify.app/)
+> Demo link [Click here](https://infallible-yalow-eda263.netlify.app/)
 
 # Getting Started with Create React App
 
