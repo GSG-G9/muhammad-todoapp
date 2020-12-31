@@ -1,25 +1,196 @@
 .NewTodoForm {
-  margin-top: 3rem;
+  margin-top: 1rem;
   display: flex;
   flex-wrap: wrap;
+  height: 80px;
+  border: 1px solid #c7c7c7;
+  border-radius: 3px;
+  background-color: #fefefe;
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
 }
 
-.NewTodoForm label {
-  min-width: 100%;
-  margin-bottom: 0.5rem;
-  font-size: 1.3rem;
+.add-task {
+  width: 100%;
+}
+
+.add-task button {
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.add-task button:hover {
+  border: none;
+  background-color: transparent;
+  color: #dd4b39 !important;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.add-task button .icon-add {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 3px;
+  color: white;
+  border-radius: 50%;
+  line-height: 15px;
+  transition: all 0.3s;
+}
+
+.add-task button .icon-add svg path {
+  fill: #dd4b39
+}
+
+.add-task button:hover > .icon-add {
+  background-color: #dd4b39;
+  transition: all 0.3s;
+}
+
+.add-task button:hover > .icon-add svg path {
+  fill: white !important;
+  transition: all 0.3s;
+}
+
+.NewTodoForm-select {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  justify-content: flex-end;
+  padding-bottom: 5px;
+}
+
+.NewTodoForm-select button {
+  cursor: pointer;
+}
+
+.NewTodoForm-label {
+  height: 25px;
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
+
+.NewTodoForm-label .NewTodoForm-label-icon {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s;
+}
+
+.NewTodoForm-label .NewTodoForm-label-icon svg path {
+  fill: #757575 !important;
+}
+
+.NewTodoForm-label:hover > .NewTodoForm-label-icon {
+  background-color: #cccccc;
+  line-height: 20px;
+  transition: all 0.3s;
 }
 
 .NewTodoForm input {
   flex-grow: 1;
   border: none;
-  background: #f7f1f1;
+  background: transparent;
   padding: 0 1.5em;
   font-size: initial;
   outline: none;
 }
 
-.NewTodoForm button {
+.NewTodoForm .select-box {
+  position: absolute;
+  top: 25px;
+  background-color: white;
+  border: 1px solid #c7c7c7;
+  color: #151515;
+  width: 120px;
+}
+
+.NewTodoForm .select-box ul {
+  padding: 0px;
+  margin: 0px;
+}
+
+.NewTodoForm .select-box ul li {
+  padding: 0px 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 0;
+  font-size: 14px;
+  font-weight: 300;
+  width: 100%;
+}
+
+.NewTodoForm .select-box ul li:hover {
+  background-color: #c7c7c7;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.NewTodoForm .select-box ul li span {
+  height: 24px;
+  width: 24px;
+  padding-right: 35px;
+  display: inline-block;
+}
+
+.submit-btn-box {
+  margin-top: 10px;
+}
+
+.submit-btn-box button:first-of-type {
+  width: 75px;
+  height: 30px;
+  margin-right: 5px;
+  padding-bottom: 10px;
+  background-color: #dd4b39;
+  color: white;
+  font-weight: 600;
+  border: none;
+  line-height: 27px;
+  outline: none;
+  cursor: pointer;
+}
+
+.submit-btn-box button:first-of-type:hover {
+  background-color: #c22d1a;
+  transition: all 0.3s;
+}
+
+.submit-btn-box button:nth-of-type(2) {
+  width: 75px;
+  height: 30px;
+  padding-bottom: 10px;
+  background-color: #fafafa;
+  color: #dd4b39;
+  font-weight: 600;
+  border: none;
+  line-height: 27px;
+  outline: none;
+  cursor: pointer;
+}
+
+.submit-btn-box button:nth-of-type(2):hover {
+  color: #c22d1a;
+  background-color: #f0f0f0;
+  transition: all 0.3s;
+}
+
+
+/* .NewTodoForm button {
   padding: 0 1.3rem;
   border: none;
   background: rgba(65, 255, 1, 0.83);
@@ -39,4 +210,4 @@
 .NewTodoForm button {
   font-family: "Quicksand", sans-serif;
   height: 3rem;
-}
+} */
