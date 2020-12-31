@@ -25,7 +25,7 @@ export default class NewTodoForm extends Component {
   handleChange(evt) {
     console.log(evt.target.name);
     this.setState({
-      todo: {[evt.target.name]: evt.target.value,}
+      todo: { ...this.state.todo, [evt.target.name]: evt.target.value,}
     });
   }
 
@@ -45,34 +45,37 @@ export default class NewTodoForm extends Component {
     });
     this.setState({
       todo: {
+        ...this.state.todo,
         task: "",
       },
       show: !this.state.show,
     });
-    console.log(this.state.todo.task);
   }
 
   showForm() {
-    this.setState({ show: !this.state.show, todo: { task: "" } });
+    this.setState({ ...this.state.todo, show: !this.state.show });
   }
 
   toggleShowLabel() {
-    this.setState({ showLabel: !this.state.showLabel });
+    this.setState({ ...this.state.todo, showLabel: !this.state.showLabel });
   }
 
   handleSelectPriority(evt) {
     console.log(evt.target.dataset.priority);
     this.setState({
       todo: {
+        ...this.state.todo,
         priority: evt.target.dataset.priority,
       },
       showLabel: !this.state.showLabel
     });
   }
 
+  color = ["#d1453b", "#EBA909", "#246FE0", "#FFFFFF"];
+
   render() {
-    console.log(this.state.todo.task !== "");
-    const { show } = this.state;
+    const { show, todo: { task, priority } } = this.state;
+    console.log(this.state.todo);
     return (
       <>
         {show ? (
@@ -100,11 +103,17 @@ export default class NewTodoForm extends Component {
                       height="24"
                       viewBox="0 0 24 24"
                     >
-                      <path
-                        fill="currentColor"
+                      {+priority === 4 ? (<path
+                        fill="#959595"
                         fillRule="nonzero"
                         d="M5 13.777V19.5a.5.5 0 1 1-1 0V5a.5.5 0 0 1 .223-.416C5.313 3.857 6.742 3.5 8.5 3.5c1.113 0 1.92.196 3.658.776C13.796 4.82 14.53 5 15.5 5c1.575 0 2.813-.31 3.723-.916A.5.5 0 0 1 20 4.5V13a.5.5 0 0 1-.223.416c-1.09.727-2.519 1.084-4.277 1.084-1.113 0-1.92-.196-3.658-.776C10.204 13.18 9.47 13 8.5 13c-1.45 0-2.614.262-3.5.777zm0-1.123C5.965 12.216 7.133 12 8.5 12c1.113 0 1.92.196 3.658.776 1.638.545 2.371.724 3.342.724 1.45 0 2.614-.262 3.5-.777V5.346c-.965.438-2.133.654-3.5.654-1.113 0-1.92-.196-3.658-.776C10.204 4.68 9.47 4.5 8.5 4.5c-1.45 0-2.614.262-3.5.777v7.377z"
-                      ></path>
+                      ></path>): (
+                        <path
+                          fill={`${this.color[priority - 1]}`}
+                          fillRule="nonzero"
+                          d="M5 13.777V19.5a.5.5 0 1 1-1 0V5a.5.5 0 0 1 .223-.416C5.313 3.857 6.742 3.5 8.5 3.5c1.113 0 1.92.196 3.658.776C13.796 4.82 14.53 5 15.5 5c1.575 0 2.813-.31 3.723-.916A.5.5 0 0 1 20 4.5V13a.5.5 0 0 1-.223.416c-1.09.727-2.519 1.084-4.277 1.084-1.113 0-1.92-.196-3.658-.776C10.204 13.18 9.47 13 8.5 13c-1.45 0-2.614.262-3.5.777z"
+                        ></path>
+                      )}
                     </svg>
                   </span>
                   <span className="tooltiptext">Set the priority p1, p2, p3, p4</span>
@@ -226,7 +235,7 @@ export default class NewTodoForm extends Component {
           </div>
         ) : (
           <div className="submit-btn-box">
-            <button type="button" disabled={!this.state.todo.task} onClick={this.handleSubmit}>Add</button>
+            <button type="button" disabled={!task} onClick={this.handleSubmit}>Add</button>
             <button type="button" onClick={this.showForm}>Cancel</button>
           </div>
         )}

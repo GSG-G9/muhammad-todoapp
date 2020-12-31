@@ -6,8 +6,8 @@ export default class Todo extends Component {
     super(props);
     this.state = {
       todo: {
-        task: this.props.task,
-        priority: 1,
+        task: this.props.taskProps,
+        priority: this.props.priorityProps,
         label: "",
       },
       isEditing: false,
@@ -23,19 +23,16 @@ export default class Todo extends Component {
   }
 
   handleToggle() {
-    console.log(this.props.completed);
-    console.log(this.props.id);
     this.props.toggleTodo(this.props.id);
   }
 
   toggleToEdit() {
-    this.setState({ isEditing: !this.state.isEditing });
+    this.setState({ ...this.state.todo, isEditing: !this.state.isEditing });
   }
 
   handleChange(evt) {
-    console.log(evt.target.name);
     this.setState({
-      todo: {[evt.target.name]: evt.target.value,}
+      todo: { ...this.state.todo, [evt.target.name]: evt.target.value },
     });
   }
 
@@ -43,24 +40,41 @@ export default class Todo extends Component {
     console.log(evt.target.dataset.priority);
     this.setState({
       todo: {
+        ...this.state.todo,
         priority: evt.target.dataset.priority,
       },
-      showLabel: !this.state.showLabel
+      showLabel: !this.state.showLabel,
     });
   }
 
   handleUpdate(evt) {
     evt.preventDefault();
     //Take New Task Data and Pass Up To Parent
+    console.log(this.state.todo);
     this.props.update(this.props.id, this.state.todo);
-    this.setState({ isEditing: false })
+    this.setState({ isEditing: false });
   }
 
   toggleShowLabel() {
-    this.setState({ showLabel: !this.state.showLabel });
+    this.setState({ ...this.state.todo, showLabel: !this.state.showLabel });
   }
 
+  color = ["#d1453b", "#EBA909", "#246FE0", "#FFFFFF"];
+
   render() {
+    const {
+      taskProps,
+      priorityProps,
+      lastUpdate,
+      createdOn,
+      completed,
+    } = this.props;
+    const {
+      todo: { task, priority },
+      showLabel,
+    } = this.state;
+    let priorityValue = +priorityProps;
+    console.log(priorityProps);
     return (
       <>
         {this.state.isEditing ? (
@@ -72,7 +86,7 @@ export default class Todo extends Component {
                   id="task"
                   name="task"
                   placeholder="New Todo..."
-                  value={this.state.todo.task}
+                  value={task}
                   onChange={this.handleChange}
                 />
                 <div className="NewTodoForm-select">
@@ -83,17 +97,26 @@ export default class Todo extends Component {
                   >
                     <span className="NewTodoForm-label-icon">
                       <svg
-                        data-svgs-path="sm1/priority_flag.svg"
-                        xmlns="http://www.w3.org/2000/svg"
+                        // data-svgs-path="sm1/priority_flag.svg"
+                        // xmlns="http://www.w3.org/2000/svg"
+                        fill={`${this.color[priority - 1]}`}
                         width="24"
                         height="24"
                         viewBox="0 0 24 24"
                       >
-                        <path
-                          fill="currentColor"
-                          fillRule="nonzero"
-                          d="M5 13.777V19.5a.5.5 0 1 1-1 0V5a.5.5 0 0 1 .223-.416C5.313 3.857 6.742 3.5 8.5 3.5c1.113 0 1.92.196 3.658.776C13.796 4.82 14.53 5 15.5 5c1.575 0 2.813-.31 3.723-.916A.5.5 0 0 1 20 4.5V13a.5.5 0 0 1-.223.416c-1.09.727-2.519 1.084-4.277 1.084-1.113 0-1.92-.196-3.658-.776C10.204 13.18 9.47 13 8.5 13c-1.45 0-2.614.262-3.5.777zm0-1.123C5.965 12.216 7.133 12 8.5 12c1.113 0 1.92.196 3.658.776 1.638.545 2.371.724 3.342.724 1.45 0 2.614-.262 3.5-.777V5.346c-.965.438-2.133.654-3.5.654-1.113 0-1.92-.196-3.658-.776C10.204 4.68 9.47 4.5 8.5 4.5c-1.45 0-2.614.262-3.5.777v7.377z"
-                        ></path>
+                        {+priority === 4 ? (
+                          <path
+                            fill="#959595"
+                            fillRule="nonzero"
+                            d="M5 13.777V19.5a.5.5 0 1 1-1 0V5a.5.5 0 0 1 .223-.416C5.313 3.857 6.742 3.5 8.5 3.5c1.113 0 1.92.196 3.658.776C13.796 4.82 14.53 5 15.5 5c1.575 0 2.813-.31 3.723-.916A.5.5 0 0 1 20 4.5V13a.5.5 0 0 1-.223.416c-1.09.727-2.519 1.084-4.277 1.084-1.113 0-1.92-.196-3.658-.776C10.204 13.18 9.47 13 8.5 13c-1.45 0-2.614.262-3.5.777zm0-1.123C5.965 12.216 7.133 12 8.5 12c1.113 0 1.92.196 3.658.776 1.638.545 2.371.724 3.342.724 1.45 0 2.614-.262 3.5-.777V5.346c-.965.438-2.133.654-3.5.654-1.113 0-1.92-.196-3.658-.776C10.204 4.68 9.47 4.5 8.5 4.5c-1.45 0-2.614.262-3.5.777v7.377z"
+                          ></path>
+                        ) : (
+                          <path
+                            fill={`${this.color[priority - 1]}`}
+                            fillRule="nonzero"
+                            d="M5 13.777V19.5a.5.5 0 1 1-1 0V5a.5.5 0 0 1 .223-.416C5.313 3.857 6.742 3.5 8.5 3.5c1.113 0 1.92.196 3.658.776C13.796 4.82 14.53 5 15.5 5c1.575 0 2.813-.31 3.723-.916A.5.5 0 0 1 20 4.5V13a.5.5 0 0 1-.223.416c-1.09.727-2.519 1.084-4.277 1.084-1.113 0-1.92-.196-3.658-.776C10.204 13.18 9.47 13 8.5 13c-1.45 0-2.614.262-3.5.777z"
+                          ></path>
+                        )}
                       </svg>
                     </span>
                     <span className="tooltiptext">
@@ -118,7 +141,7 @@ export default class Todo extends Component {
                     </span>
                     <span className="tooltiptext">Add label</span>
                   </button>
-                  {this.state.showLabel ? (
+                  {showLabel ? (
                     <div className="select-box">
                       <ul className="priority_list">
                         <li
@@ -215,8 +238,16 @@ export default class Todo extends Component {
               </form>
             </div>
             <div className="submit-btn-box">
-              <button type="button" disabled={!this.state.todo.task} onClick={this.handleUpdate}>Save</button>
-              <button type="button" onClick={this.toggleToEdit}>Cancel</button>
+              <button
+                type="button"
+                disabled={!task}
+                onClick={this.handleUpdate}
+              >
+                Save
+              </button>
+              <button type="button" onClick={this.toggleToEdit}>
+                Cancel
+              </button>
             </div>
           </div>
         ) : (
@@ -224,13 +255,26 @@ export default class Todo extends Component {
             <li className="Todo-item">
               <div className="Todo-task_label"></div>
               <div className="Todo-item-content">
+                <span className="priority_item_icon">
+                  <svg
+                    data-svgs-path="sm1/priority_3.svg"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill={`${this.color[priorityValue - 1]}`}
+                      fillRule="nonzero"
+                      d="M5 13.777V19.5a.5.5 0 1 1-1 0V5a.5.5 0 0 1 .223-.416C5.313 3.857 6.742 3.5 8.5 3.5c1.113 0 1.92.196 3.658.776C13.796 4.82 14.53 5 15.5 5c1.575 0 2.813-.31 3.723-.916A.5.5 0 0 1 20 4.5V13a.5.5 0 0 1-.223.416c-1.09.727-2.519 1.084-4.277 1.084-1.113 0-1.92-.196-3.658-.776C10.204 13.18 9.47 13 8.5 13c-1.45 0-2.614.262-3.5.777z"
+                    ></path>
+                  </svg>
+                </span>
                 <div
-                  className={
-                    this.props.completed ? "Todo-task completed" : "Todo-task"
-                  }
+                  className={completed ? "Todo-task completed" : "Todo-task"}
                   onClick={this.handleToggle}
                 >
-                  {this.props.task}
+                  {taskProps}
                 </div>
                 <div className="Todo-buttons">
                   <button onClick={this.toggleToEdit}>
@@ -243,19 +287,11 @@ export default class Todo extends Component {
               </div>
               <div className="todo-date-box">
                 <span className="create-on tooltip">
-                  {
-                    new Date(this.props.createdOn)
-                      .toLocaleString()
-                      .split(",")[0]
-                  }
+                  {new Date(createdOn).toLocaleString().split(",")[0]}
                   <span className="tooltiptext">Created on</span>
                 </span>
                 <span className="last-update tooltip">
-                  {
-                    new Date(this.props.lastUpdate)
-                      .toLocaleString()
-                      .split(",")[0]
-                  }
+                  {new Date(lastUpdate).toLocaleString().split(",")[0]}
                   <span className="tooltiptext">Last update</span>
                 </span>
               </div>

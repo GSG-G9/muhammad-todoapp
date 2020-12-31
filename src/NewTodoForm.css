@@ -89,9 +89,9 @@
   transition: all 0.3s;
 }
 
-.NewTodoForm-label .NewTodoForm-label-icon svg path {
+/* .NewTodoForm-label .NewTodoForm-label-icon svg path {
   fill: #757575 !important;
-}
+} */
 
 .NewTodoForm-label:hover > .NewTodoForm-label-icon {
   background-color: #cccccc;
