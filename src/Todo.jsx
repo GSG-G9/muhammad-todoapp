@@ -20,6 +20,7 @@ export default class Todo extends Component {
     this.handleSelectPriority = this.handleSelectPriority.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
     this.toggleShowLabel = this.toggleShowLabel.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
   }
 
   handleToggle() {
@@ -58,6 +59,10 @@ export default class Todo extends Component {
   toggleShowLabel() {
     this.setState({ ...this.state.todo, showLabel: !this.state.showLabel });
   }
+
+  handleRemove() {
+    this.props.remove();
+}
 
   color = ["#d1453b", "#EBA909", "#246FE0", "#FFFFFF"];
 
@@ -280,7 +285,7 @@ export default class Todo extends Component {
                   <button onClick={this.toggleToEdit}>
                     <i className="fas fa-pen"></i>
                   </button>
-                  <button>
+                  <button onClick={this.handleRemove}>
                     <i className="fas fa-trash"></i>
                   </button>
                 </div>
