@@ -11,6 +11,7 @@ export default class TodoList extends Component {
     };
     this.toggleCompletion = this.toggleCompletion.bind(this);
     this.addTodo = this.addTodo.bind(this);
+    this.update = this.update.bind(this);
   }
 
   componentDidMount() {
@@ -45,6 +46,19 @@ export default class TodoList extends Component {
     console.log(this.state.todos)
   }
 
+  update(id, {task, priority, label}) {
+    console.log(this.state.todos);
+    const updateTodos = this.state.todos.map(todo => {
+      if (todo.todo_id === id) {
+        return { ...todo, todo_content: task, priority, label, last_update: Date.now() };
+      }
+      return todo;
+    });
+    this.setState({
+      todos: updateTodos
+    })
+  }
+
 
   render() {
     const todos = this.state.todos.map(item => (
@@ -54,6 +68,7 @@ export default class TodoList extends Component {
         completed={item.completed}
         createdOn={item.created_on}
         lastUpdate={item.last_update}
+        update={this.update}
         id={item.todo_id}
         toggleTodo={this.toggleCompletion}
       />

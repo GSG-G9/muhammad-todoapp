@@ -1,8 +1,8 @@
 
 .Todo{
     display: flex;
-    margin: 0 -3rem 4px;
-    padding: 1.1rem 3rem;
+    margin-bottom: 5px;
+    padding: 10px 20px;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
@@ -132,6 +132,9 @@
 .todo-date-box{
   display: flex;
   justify-content: space-between;
+  font-size: 12px;
+  padding: 0px 8px;
+  padding-top: 20px;
 }
 
 @keyframes strikeitem {

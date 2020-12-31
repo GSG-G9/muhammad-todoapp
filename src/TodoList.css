@@ -11,13 +11,12 @@
     margin-top: 2.6rem;
     list-style: none;
     max-height: 300px;
-    overflow: hidden;
     overflow-y: scroll;
+    padding-left: 0%;
 }
 
 .TodoList .TodoList-list::-webkit-scrollbar {
-  scroll-behavior: smooth;
-  visibility: hidden;
+  display: none;
 }
 
 .TodoList h1 {
