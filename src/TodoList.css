@@ -7,23 +7,17 @@
     box-shadow: -20px -20px 0px 0px rgba(201, 171, 0, 0.672);
 }
 
-.TodoList ul {
+.TodoList .TodoList-list {
     margin-top: 2.6rem;
     list-style: none;
+    max-height: 300px;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
-.TodoList ul li {
-    cursor: pointer;
-    word-break: break-all;
-    text-align: left;
-    border-radius: 10px;
-    padding: 2px 8px 4px 8px;
-    transition: 0.4s;
-}
-
-.TodoList ul li:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transition: 0.65s;
+.TodoList .TodoList-list::-webkit-scrollbar {
+  scroll-behavior: smooth;
+  visibility: hidden;
 }
 
 .TodoList h1 {
@@ -31,6 +25,7 @@
     font-size: 2.6rem;
     letter-spacing: 0.05em;
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    margin-top: 10px;
 }
 
 .TodoList h1 span {

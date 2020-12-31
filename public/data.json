@@ -3,40 +3,40 @@
     "todo_id": "0876c6f7-1159-4b9f-96bc-d316e11a64cb",
     "todo_content": "new task",
     "completed": false,
-    "importance_level": 1,
-    "task_type": "House",
+    "priority": 1,
+    "lebel": "House",
     "created_on": 1609398657207,
     "last_update": 1609398689075
   },{
     "todo_id": "adcdd873-e875-424c-a5c6-9b30c8f4d31a",
     "todo_content": "new task",
     "completed": false,
-    "importance_level": 1,
-    "task_type": "House",
+    "priority": 1,
+    "lebel": "House",
     "created_on": 1609398657207,
     "last_update": 1609398689075
   },{
     "todo_id": "3e21d866-223b-4e75-8f6b-4069ed7a088f",
     "todo_content": "new task",
     "completed": false,
-    "importance_level": 1,
-    "task_type": "House",
+    "priority": 1,
+    "lebel": "House",
     "created_on": 1609398657207,
     "last_update": 1609398689075
   },{
     "todo_id": "ebb017a0-36a8-40af-9bc4-386cb5471383",
     "todo_content": "new task",
     "completed": false,
-    "importance_level": 1,
-    "task_type": "House",
+    "priority": 1,
+    "lebel": "House",
     "created_on": 1609398657207,
     "last_update": 1609398689075
   },{
     "todo_id": "84fbb190-eb2a-4d45-a678-4005dc45642b",
     "todo_content": "new task",
     "completed": false,
-    "importance_level": 1,
-    "task_type": "House",
+    "priority": 1,
+    "lebel": "House",
     "created_on": 1609398657207,
     "last_update": 1609398689075
   }

@@ -10,6 +10,7 @@ export default class TodoList extends Component {
       todos: []
     };
     this.toggleCompletion = this.toggleCompletion.bind(this);
+    this.addTodo = this.addTodo.bind(this);
   }
 
   componentDidMount() {
@@ -37,12 +38,22 @@ export default class TodoList extends Component {
     this.setState({ todos: updatedTodos });
   }
 
+  addTodo(newTodo) {
+    this.setState({
+      todos: [...this.state.todos, newTodo]
+    });
+    console.log(this.state.todos)
+  }
+
+
   render() {
     const todos = this.state.todos.map(item => (
       <Todo
         key={item.todo_id}
         task={item.todo_content}
         completed={item.completed}
+        createdOn={item.created_on}
+        lastUpdate={item.last_update}
         id={item.todo_id}
         toggleTodo={this.toggleCompletion}
       />
@@ -52,8 +63,8 @@ export default class TodoList extends Component {
         <h1>
           Todo List! <span>A Simple React Todo List App.</span>
         </h1>
-        <ul>{todos}</ul>
-        <NewTodoForm />
+        <ul className="TodoList-list">{this.state.todos.length > 0 ? todos : "No todos..."}</ul>
+        <NewTodoForm addTodo={this.addTodo} />
       </div>
     );
   }
