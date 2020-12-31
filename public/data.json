@@ -10,7 +10,7 @@
   },{
     "todo_id": "adcdd873-e875-424c-a5c6-9b30c8f4d31a",
     "todo_content": "new task",
-    "completed": false,
+    "completed": true,
     "priority": 2,
     "lebel": "House",
     "created_on": 1609398657207,

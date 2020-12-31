@@ -4,7 +4,7 @@
     max-width: 500px;
     background-color: rgb(8, 170, 220);
     color: #fff;
-    box-shadow: -20px -20px 0px 0px rgba(247, 223, 90, 0.672);
+    box-shadow: -20px -20px 0px 0px rgba(6, 120, 155, 0.672);
 }
 
 .TodoList .TodoList-list {
@@ -20,7 +20,7 @@
 }
 
 .TodoList h1 {
-    font-weight: normal;
+    font-weight: bolder;
     font-size: 2.6rem;
     letter-spacing: 0.05em;
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);

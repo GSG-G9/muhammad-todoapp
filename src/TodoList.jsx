@@ -7,7 +7,7 @@ export default class TodoList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: []
+      todos: [],
     };
     this.toggleCompletion = this.toggleCompletion.bind(this);
     this.addTodo = this.addTodo.bind(this);
@@ -16,52 +16,58 @@ export default class TodoList extends Component {
 
   componentDidMount() {
     this.getTodos()
-    .then(res => res.json())
-    .then(data => this.setState({todos: [...this.state.todos, ...data]}))
-    .then(() => console.log(this.state.todos))
-    .catch(err => this.setState({errorMsg: err.msg}));
-    
+      .then((res) => res.json())
+      .then((data) => this.setState({ todos: [...this.state.todos, ...data] }))
+      .catch((err) => this.setState({ errorMsg: err.msg }));
   }
 
-  getTodos () {
-    return fetch('/data.json');
+  getTodos() {
+    return fetch("/data.json");
   }
 
   toggleCompletion(id) {
-    const updatedTodos = this.state.todos.map(todo => {
-      if(todo.todo_id === id) {
-        console.log(todo);
-        return {...todo, completed: !todo.completed};
+    const updatedTodos = this.state.todos.map((todo) => {
+      if (todo.todo_id === id) {
+        return { ...todo, completed: !todo.completed };
       }
       return todo;
-    })
-    // console.log(updatedTodos);
+    });
     this.setState({ todos: updatedTodos });
   }
 
   addTodo(newTodo) {
     this.setState({
-      todos: [...this.state.todos, newTodo]
+      todos: [...this.state.todos, newTodo],
     });
-    console.log(this.state.todos)
   }
 
-  update(id, {task, priority, label}) {
-    const updateTodos = this.state.todos.map(todo => {
+  update(id, { task, priority, label }) {
+    const updateTodos = this.state.todos.map((todo) => {
       if (todo.todo_id === id) {
-        return { ...todo, todo_content: task, priority, label, last_update: Date.now() };
+        return {
+          ...todo,
+          todo_content: task,
+          priority,
+          label,
+          last_update: Date.now(),
+        };
       }
       return todo;
     });
-    console.log(updateTodos);
     this.setState({
-      todos: updateTodos
-    })
+      todos: updateTodos,
+    });
   }
 
+  remove(id) {
+    this.setState({
+      todos: this.state.todos.filter((todo) => todo.todo_id !== id),
+    });
+  }
 
   render() {
-    const todos = this.state.todos.map(item => (
+    const {todos} = this.state;
+    const todosElnts = this.state.todos.map((item) => (
       <Todo
         key={item.todo_id}
         taskProps={item.todo_content}
@@ -72,14 +78,24 @@ export default class TodoList extends Component {
         update={this.update}
         id={item.todo_id}
         toggleTodo={this.toggleCompletion}
+        remove={() => this.remove(item.todo_id)}
       />
     ));
     return (
       <div className="TodoList">
-        <h1>
-          Todo List! <span>A Simple React Todo List App.</span>
-        </h1>
-        <ul className="TodoList-list">{this.state.todos.length > 0 ? todos : "No todos..."}</ul>
+        <h1>Todo List!</h1>
+        <p>
+          You have{" "}
+          <span style={{ color: "#15f505" }}>{todos.length}</span>{" "}
+          todos,{" "}
+          <span style={{ color: "#f55505" }}>
+            {todos.filter((todo) => todo.completed === false).length}
+          </span>{" "}
+          not complete
+        </p>
+        <ul className="TodoList-list">
+          {todos.length > 0 ? todosElnts : "No todos..."}
+        </ul>
         <NewTodoForm addTodo={this.addTodo} />
       </div>
     );

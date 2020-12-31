@@ -20,6 +20,7 @@ export default class Todo extends Component {
     this.handleSelectPriority = this.handleSelectPriority.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
     this.toggleShowLabel = this.toggleShowLabel.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
   }
 
   handleToggle() {
@@ -37,7 +38,6 @@ export default class Todo extends Component {
   }
 
   handleSelectPriority(evt) {
-    console.log(evt.target.dataset.priority);
     this.setState({
       todo: {
         ...this.state.todo,
@@ -49,8 +49,6 @@ export default class Todo extends Component {
 
   handleUpdate(evt) {
     evt.preventDefault();
-    //Take New Task Data and Pass Up To Parent
-    console.log(this.state.todo);
     this.props.update(this.props.id, this.state.todo);
     this.setState({ isEditing: false });
   }
@@ -58,6 +56,10 @@ export default class Todo extends Component {
   toggleShowLabel() {
     this.setState({ ...this.state.todo, showLabel: !this.state.showLabel });
   }
+
+  handleRemove() {
+    this.props.remove();
+}
 
   color = ["#d1453b", "#EBA909", "#246FE0", "#FFFFFF"];
 
@@ -74,7 +76,6 @@ export default class Todo extends Component {
       showLabel,
     } = this.state;
     let priorityValue = +priorityProps;
-    console.log(priorityProps);
     return (
       <>
         {this.state.isEditing ? (
@@ -280,7 +281,7 @@ export default class Todo extends Component {
                   <button onClick={this.toggleToEdit}>
                     <i className="fas fa-pen"></i>
                   </button>
-                  <button>
+                  <button onClick={this.handleRemove}>
                     <i className="fas fa-trash"></i>
                   </button>
                 </div>
